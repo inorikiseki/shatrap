@@ -49,7 +49,7 @@ public class FileUpload {
             do {
                 //获取项目的路径 + 图片文件存储的真实路径
                 String savePath = System.getProperty("user.dir") + path;
-
+                saveDir = "/upload/";
                 Date date = new Date();
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd/HH/");
                 saveDir = saveDir + simpleDateFormat.format(date);

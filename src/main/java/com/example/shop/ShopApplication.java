@@ -13,7 +13,6 @@ import org.springframework.context.annotation.ComponentScan;
 //@ComponentScan({"com.example.shop","com.example.shop.util"})
 @SpringBootApplication
 public class ShopApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(ShopApplication.class, args);
     }

@@ -1,18 +1,4 @@
-/*
- Navicat MySQL Data Transfer
 
- Source Server         : sen
- Source Server Type    : MySQL
- Source Server Version : 50726
- Source Host           : localhost:3306
- Source Schema         : shop
-
- Target Server Type    : MySQL
- Target Server Version : 50726
- File Encoding         : 65001
-
- Date: 04/07/2021 23:19:50
-*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -21,7 +7,6 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for car
 -- ----------------------------
 DROP TABLE IF EXISTS `car`;
-CREATE TABLE `car`  (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '购物车ID:自增列，主键',
   `user_id` int(11) NOT NULL COMMENT '用户ID:外键，引用user(id)',
   `good_id` int(11) NOT NULL COMMENT '商品ID:外键，引用good(id)',
@@ -159,8 +144,8 @@ CREATE TABLE `order`  (
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (7, 2, 4, '王五', '湖南文理学院', '12345678910', 4, '顺丰', '20200224163800');
-INSERT INTO `order` VALUES (16, 7, 11, '张庭', '湖南文理学院', '19936851192', 2, NULL, NULL);
+INSERT INTO `order` VALUES (7, 2, 4, '王五', '计算机学院', '12345678910', 4, '顺丰', '20200224163800');
+INSERT INTO `order` VALUES (16, 7, 11, '张庭', '数学学院', '19936851192', 2, NULL, NULL);
 INSERT INTO `order` VALUES (17, 6, 5, '李四', '湖南文理学院', '19936851192', 2, NULL, NULL);
 INSERT INTO `order` VALUES (18, 6, 14, '李四', '湖南文理学院', '19936851192', 2, NULL, NULL);
 INSERT INTO `order` VALUES (19, 6, 6, '李四', '湖南文理学院', '19936851192', 2, NULL, NULL);
@@ -184,11 +169,11 @@ CREATE TABLE `user`  (
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin@qq.com', 'admin', '张三', '男', '/upload/2021-06-24/20/1584188961065.png', 0);
+INSERT INTO `user` VALUES (1, 'admin@qq.com', 'admin', '张三', '男', '/upload/2021-06-24/20/1584188961065.png', 1);
 INSERT INTO `user` VALUES (2, 'abc@qq.com', 'abc', '李四', '女', '/upload/img/head.jpg', 0);
 INSERT INTO `user` VALUES (3, 'root@qq.com', 'root', '王五', '男', '/upload/img/head.jpg', 1);
 INSERT INTO `user` VALUES (5, '123@qq.com', '123', '哈哈', '女', '/upload/img/head.jpg', 0);
-INSERT INTO `user` VALUES (6, 'sen@qq.com', 'sen', 'sen', '男', '/upload/2021-07-01/21/1625146396530.png2021-07-01/21/1625146636146.png', 0);
+INSERT INTO `user` VALUES (6, 'sen@qq.com', 'sen', 'sen', '男', '/upload/2021-07-01/21/1625146396530.png', 0);
 INSERT INTO `user` VALUES (7, 'zt@qq.com', '123zt', '张庭', '女', '/upload/img/head.jpg', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
