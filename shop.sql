@@ -1,4 +1,18 @@
+/*
+ Navicat Premium Data Transfer
 
+ Source Server         : 8.142.155.84
+ Source Server Type    : MySQL
+ Source Server Version : 80035 (8.0.35-0ubuntu0.22.04.1)
+ Source Host           : 8.142.155.84:3306
+ Source Schema         : shop
+
+ Target Server Type    : MySQL
+ Target Server Version : 80035 (8.0.35-0ubuntu0.22.04.1)
+ File Encoding         : 65001
+
+ Date: 27/12/2023 15:29:53
+*/
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -7,173 +21,171 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- Table structure for car
 -- ----------------------------
 DROP TABLE IF EXISTS `car`;
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '购物车ID:自增列，主键',
-  `user_id` int(11) NOT NULL COMMENT '用户ID:外键，引用user(id)',
-  `good_id` int(11) NOT NULL COMMENT '商品ID:外键，引用good(id)',
+CREATE TABLE `car`  (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '购物车ID:自增列，主键',
+  `user_id` int NOT NULL COMMENT '用户ID:外键，引用user(id)',
+  `good_id` int NOT NULL COMMENT '商品ID:外键，引用good(id)',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `carUserID`(`user_id`) USING BTREE,
-  INDEX `carGoodID`(`good_id`) USING BTREE,
+  INDEX `carUserID`(`user_id` ASC) USING BTREE,
+  INDEX `carGoodID`(`good_id` ASC) USING BTREE,
   CONSTRAINT `carGoodID` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `carUserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of car
 -- ----------------------------
-INSERT INTO `car` VALUES (2, 1, 6);
-INSERT INTO `car` VALUES (7, 2, 3);
-INSERT INTO `car` VALUES (8, 2, 4);
-INSERT INTO `car` VALUES (12, 2, 11);
-INSERT INTO `car` VALUES (13, 2, 12);
-INSERT INTO `car` VALUES (15, 6, 5);
-INSERT INTO `car` VALUES (16, 5, 13);
-INSERT INTO `car` VALUES (17, 1, 13);
-INSERT INTO `car` VALUES (21, 7, 11);
-INSERT INTO `car` VALUES (22, 6, 6);
+INSERT INTO `car` VALUES (31, 5, 22);
+INSERT INTO `car` VALUES (32, 9, 38);
 
 -- ----------------------------
 -- Table structure for category
 -- ----------------------------
 DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '种类ID:自增，主键',
-  `name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '种类名称',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '种类ID:自增，主键',
+  `name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '种类名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of category
 -- ----------------------------
-INSERT INTO `category` VALUES (2, '家具');
-INSERT INTO `category` VALUES (3, '日常用品');
-INSERT INTO `category` VALUES (4, '男装');
-INSERT INTO `category` VALUES (5, '女装');
-INSERT INTO `category` VALUES (6, '化妆品');
-INSERT INTO `category` VALUES (7, '首饰');
-INSERT INTO `category` VALUES (8, '箱包');
-INSERT INTO `category` VALUES (9, '数码');
-INSERT INTO `category` VALUES (10, '家电');
-INSERT INTO `category` VALUES (11, '运动');
-INSERT INTO `category` VALUES (12, '宠物');
+INSERT INTO `category` VALUES (2, '教科书');
+INSERT INTO `category` VALUES (4, '文具和办公用品');
+INSERT INTO `category` VALUES (5, '电子产品');
+INSERT INTO `category` VALUES (7, '衣物');
+INSERT INTO `category` VALUES (8, '宿舍必需品');
+INSERT INTO `category` VALUES (9, '食品和饮料');
+INSERT INTO `category` VALUES (10, '校园周边商品');
+INSERT INTO `category` VALUES (11, '实验室用品');
+INSERT INTO `category` VALUES (12, '活动门票');
+INSERT INTO `category` VALUES (13, '运动器材');
+INSERT INTO `category` VALUES (14, '音乐与乐器');
+INSERT INTO `category` VALUES (15, '交通工具');
+INSERT INTO `category` VALUES (16, '小说与漫画');
+INSERT INTO `category` VALUES (17, '化妆品');
 
 -- ----------------------------
 -- Table structure for good
 -- ----------------------------
 DROP TABLE IF EXISTS `good`;
 CREATE TABLE `good`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '商品ID：自增，主键',
-  `user_id` int(11) NOT NULL COMMENT '用户ID:外键，引用user(id)',
-  `category_id` int(11) NOT NULL COMMENT '种类ID:外键，引用category（id）',
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品名称',
-  `describe` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品描述',
-  `price` int(11) NOT NULL COMMENT '商品价格',
-  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品图片',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '商品ID：自增，主键',
+  `user_id` int NOT NULL COMMENT '用户ID:外键，引用user(id)',
+  `category_id` int NOT NULL COMMENT '种类ID:外键，引用category（id）',
+  `title` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品名称',
+  `describe` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品描述',
+  `price` int NOT NULL COMMENT '商品价格',
+  `img` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '商品图片',
   `state` tinyint(1) NOT NULL DEFAULT 1 COMMENT '商品状态：（1：未出售）（0：已出售）',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `goodUserID`(`user_id`) USING BTREE,
-  INDEX `goodCategoryID`(`category_id`) USING BTREE,
-  CONSTRAINT `goodUserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `goodCategoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  INDEX `goodUserID`(`user_id` ASC) USING BTREE,
+  INDEX `goodCategoryID`(`category_id` ASC) USING BTREE,
+  INDEX `i_title`(`title` ASC) USING BTREE,
+  CONSTRAINT `goodCategoryID` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `goodUserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 43 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of good
 -- ----------------------------
-INSERT INTO `good` VALUES (3, 1, 2, '可折叠加厚双面使用榻榻米床垫', '可以折叠的榻榻米床垫，收纳不占空间，正反两面都可以使用，同时纯棉材质舒适亲肤，透气性好，保持贴身换将干爽 不粘腻。', 180, '/upload/2021-06-25/15/1582443919266.jpg', 1);
-INSERT INTO `good` VALUES (4, 1, 7, '人鱼的眼泪 祖母绿琉璃吊坠', '简约的祖母绿水晶吊坠，光泽迷人，尽显十足的典雅宫廷风。', 278, '/upload/2021-06-25/15/1582444313438.jpg', 0);
-INSERT INTO `good` VALUES (5, 2, 7, '手工琉璃淡紫项链', '“淡雅的紫色调十分迷人，小小的性感韵味却不会显得人老气横秋。”', 278, '/upload/2021-06-25/16/1582445742199.jpg', 0);
-INSERT INTO `good` VALUES (6, 2, 7, '人鱼的眼泪薰衣草海外原创设计手工琉璃吊坠项链', '“人鱼的眼泪薰衣草海外原创设计手工琉璃吊坠项链。手工成形，纯银抛光，热熔镶嵌，来自世界时尚之都日本东京的手工首饰，纯银与琉璃的完美结合，带你探寻源于心灵的浪漫与精致。”', 298, '/upload/2021-06-25/16/1582445885698.jpg', 0);
-INSERT INTO `good` VALUES (8, 2, 7, '航民 实心光面足金手镯', '“耀眼的足金无需过多修饰，便能凸显出它的独特气质。实心的光圈创意，犹如知性的少女，无需张扬讨好亦有人爱。更有可调节的开扣，独特的设计，展现女性温柔如水的内涵。”', 6053, '/upload/2021-06-25/16/1582446346946.jpg', 1);
-INSERT INTO `good` VALUES (9, 2, 7, '周大福 简约足金黄金手链', '“足金打造，佩戴起来凸显华丽质感，别致迷人的镂空徽章造型做工精湛，可调节链带脱戴更显方便，整体简约自然，更显亮白肤色。”', 8465, '/upload/2021-06-25/16/1582446462373.jpg', 0);
-INSERT INTO `good` VALUES (10, 1, 4, 'Kiko联名Asics斗篷夹克', 'Kiko Kostadinov X Asics Poncho 联名推出的一款可拆卸外套，是一款运动风格的连帽冲锋衣，通过立体剪裁工艺，设计出的这样时尚别致的运动服。深色鸭蛋蓝，喉部有引人注目的黑色镶板，呈现出简单而醒目的轮廓。', 1799, '/upload/2021-06-27/17/1584437283172.jpg', 1);
-INSERT INTO `good` VALUES (11, 1, 4, '白糖玫瑰 日系复古宽松潮流夹克', '夹克版型，上身帅气有型，复古风格，彰显时尚潮流，短款外套，拉长身材比例。宽松版型，舒适百搭。”', 168, '/upload/2021-06-27/17/1584437346060.jpg', 0);
-INSERT INTO `good` VALUES (12, 1, 4, '男士羊羔绒连帽夹克', '此款工装夹克选用羊羔毛作内胆，水洗棉作面料，加厚保暖，柔软舒适，经典的连帽设计增添休闲感，胸前的拉链独特个性，兼具一定的实用性，两侧的贴布口袋容量大，实用性强，衣身五金做旧有质感，彰显不俗品质。', 242, '/upload/2021-06-27/17/1584437423156.jpg', 0);
-INSERT INTO `good` VALUES (13, 2, 4, 'TIANC BRAND撞色翻领夹克', '大面积撞色显得别具一格，突出浓郁的复古街头风设计特点。结合垃圾食品的印花主题，能够渲染有趣的年轻氛围，从而散发青春流行风气息。立体拼接大口袋，诠释工装的硬朗魅力。', 529, '/upload/2021-06-27/17/1584437784107.jpg', 0);
-INSERT INTO `good` VALUES (14, 2, 4, 'TIANC BRAND撞色夹克外套', '此款夹克充分的借鉴经典冲锋衣外套的设计精髓，通过断层分割以及半拉链门襟，体现潮酷机能性。大胆的撞色元素，有着强烈的视觉冲击力，解析出复古街头风格。', 349, '/upload/2021-06-27/17/1584437873477.jpg', 0);
-INSERT INTO `good` VALUES (15, 2, 4, 'FYP国潮嘻哈印花套头工装夹克', '半拉链的套头款夹克外套，缔造冲锋衣那种机能性设计感，潮酷风采十足。偏宽松的版型，有着不拘一格的随性气息。干净明朗的底色，渗透欧美风的简约基调。', 399, '/upload/2021-06-27/17/1584437960047.jpg', 1);
-INSERT INTO `good` VALUES (16, 6, 2, '优木家具纯实木沙发', '简单也是一种美/ 纯净的颜色，搭配任一款家具，尽显浪漫生活气息，满走您对居家生活的无止境追求。', 1000, '/upload/2021-06-28/17/1624873872247.jpg', 1);
-INSERT INTO `good` VALUES (19, 6, 5, '霉霉同款裙子', '霉霉同款裙子，仙气飘飘！', 200, '/upload/2021-07-02/08/1625185041862.png', 1);
+INSERT INTO `good` VALUES (22, 2, 4, '一只钢笔', '以前买的一支钢笔，保护挺好的，没怎么用过，质量如图。', 20, '/upload/2023-12-19/pen.jpg', 0);
+INSERT INTO `good` VALUES (23, 2, 4, '几乎全新的计算器', '几乎未使用的计算器，带有屏幕保护膜，适合数学、物理等科目的学生使用。', 40, '/upload/2023-12-19/计算器.jpg', 1);
+INSERT INTO `good` VALUES (24, 2, 16, '漫画杂志合集', '文具	多本漫画杂志的合集，包含热门漫画作品，适合漫画爱好者收藏阅读。', 30, '/upload/2023-12-19/heji.jpg', 0);
+INSERT INTO `good` VALUES (25, 3, 5, 'iPad Pro 11寸	', 'iPad	64GB储存容量，配备Apple Pencil和Smart Keyboard，适合学习和创作使用。', 3500, '/upload/2023-12-19/ipad.jpg', 1);
+INSERT INTO `good` VALUES (26, 3, 5, '机械键盘	', '键盘	机械键盘，带有背光效果，使用可靠的机械轴，适合打字和游戏使用。', 300, '/upload/2023-12-19/keyboard.jpg', 1);
+INSERT INTO `good` VALUES (27, 5, 7, '运动T恤', '衣服	品牌：Nike，尺码：M，适合运动和日常穿着，透气舒适，颜色：黑色。	', 50, '/upload/2023-12-19/nike.jpg', 1);
+INSERT INTO `good` VALUES (28, 5, 7, '休闲裤', '	衣服	舒适休闲的长裤，尺码：M，适合日常休闲和校园活动，颜色：蓝色。	', 60, '/upload/2023-12-19/xiuxianku.jpg', 1);
+INSERT INTO `good` VALUES (29, 5, 7, '外套	', '衣服	时尚款式的外套，尺码：XL，适合秋冬季节穿着，保暖舒适，颜色：灰色。	', 120, '/upload/2023-12-19/coat.jpg', 1);
+INSERT INTO `good` VALUES (30, 9, 15, '山地自行车', '	自行车	品牌：Giant，车架尺寸：M，21速变速系统，前避震器，适合校园内的骑行和运动。	', 400, '/upload/2023-12-19/bycycle2.jpg', 1);
+INSERT INTO `good` VALUES (31, 9, 8, '书架', '	支架	实木书架，适合放置书籍、文件和其他物品，方便整理和存放学习资料和文献。	', 50, '/upload/2023-12-19/shujia.jpg', 1);
+INSERT INTO `good` VALUES (33, 10, 9, '薯片混合装', '	零食	多种口味的薯片混合装，包括原味、番茄、酸奶洋葱等，适合与朋友分享或作为小吃零食。	', 20, '/upload/2023-12-19/shupian.jpg', 1);
+INSERT INTO `good` VALUES (34, 5, 4, '钢笔', '一支钢笔', 19, '/upload/2023-12-19/pen.jpg', 1);
+INSERT INTO `good` VALUES (37, 2, 9, '泡芙小零食', '巧克力泡芙 * 10', 30, '/upload/2023-12-19/11/1702958169887.jpg', 1);
+INSERT INTO `good` VALUES (38, 3, 2, '英语牛津字典', '英语牛津字典，几乎无损，无笔迹。', 45, '/upload/2023-12-19/12/1702958516603.jpg', 1);
 
 -- ----------------------------
 -- Table structure for message
 -- ----------------------------
 DROP TABLE IF EXISTS `message`;
 CREATE TABLE `message`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '留言ID:自增，主键',
-  `user_id` int(11) NOT NULL COMMENT '用户ID:外键，引用user(id)',
-  `good_id` int(11) NOT NULL COMMENT '商品ID:外键，引用good(id)',
-  `content` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '留言内容',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '留言ID:自增，主键',
+  `user_id` int NOT NULL COMMENT '用户ID:外键，引用user(id)',
+  `good_id` int NOT NULL COMMENT '商品ID:外键，引用good(id)',
+  `content` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '留言内容',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `messageUserID`(`user_id`) USING BTREE,
-  INDEX `messageGoodID`(`good_id`) USING BTREE,
+  INDEX `messageUserID`(`user_id` ASC) USING BTREE,
+  INDEX `messageGoodID`(`good_id` ASC) USING BTREE,
   CONSTRAINT `messageGoodID` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `messageUserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES (4, 1, 4, '啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈');
-INSERT INTO `message` VALUES (5, 1, 5, '好好好好好好好好好好好好好');
-INSERT INTO `message` VALUES (6, 6, 5, '(๑•̀ㅂ•́)و✧');
-INSERT INTO `message` VALUES (7, 6, 5, '挺好的');
-INSERT INTO `message` VALUES (8, 7, 11, '7777');
-INSERT INTO `message` VALUES (9, 6, 9, '真金白银');
+INSERT INTO `message` VALUES (18, 5, 22, '我喜欢这个牌子的钢笔，价格很不错。');
+INSERT INTO `message` VALUES (19, 9, 28, '看上去质量不错。');
+INSERT INTO `message` VALUES (20, 9, 31, '还能再便宜点吗？ ');
+INSERT INTO `message` VALUES (21, 10, 31, '书架的价格有点高，但是实木材质的质感应该不错。请问书架的尺寸是多大？能否容纳大部分常见尺寸的书籍和文件？');
+INSERT INTO `message` VALUES (22, 2, 37, '好好吃的样子！');
 
 -- ----------------------------
 -- Table structure for order
 -- ----------------------------
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单ID:自增，主键',
-  `user_id` int(11) NOT NULL COMMENT '用户ID:外键，引用user(id)',
-  `good_id` int(11) NOT NULL COMMENT '商品ID:外键，引用good(id)',
-  `take_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收件人姓名',
-  `take_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收件人地址',
-  `take_phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '收件人电话',
-  `state` tinyint(4) NOT NULL DEFAULT 1 COMMENT '订单状态：1:待确认 2:待发货 3:待收货 4:已完成',
-  `express_name` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '快递公司',
-  `express_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '快递单号',
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '订单ID:自增，主键',
+  `user_id` int NOT NULL COMMENT '用户ID:外键，引用user(id)',
+  `good_id` int NOT NULL COMMENT '商品ID:外键，引用good(id)',
+  `take_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '收件人姓名',
+  `take_address` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '收件人地址',
+  `take_phone` varchar(15) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '收件人电话',
+  `state` tinyint NOT NULL DEFAULT 1 COMMENT '订单状态：1:待确认 2:待发货 3:待收货 4:已完成',
+  `express_name` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '快递公司',
+  `express_number` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '快递单号',
   PRIMARY KEY (`id`) USING BTREE,
-  INDEX `orderUserID`(`user_id`) USING BTREE,
-  INDEX `orderGoodID`(`good_id`) USING BTREE,
-  CONSTRAINT `orderUserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `orderGoodID` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  INDEX `orderUserID`(`user_id` ASC) USING BTREE,
+  INDEX `orderGoodID`(`good_id` ASC) USING BTREE,
+  CONSTRAINT `orderGoodID` FOREIGN KEY (`good_id`) REFERENCES `good` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `orderUserID` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE = InnoDB AUTO_INCREMENT = 27 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (7, 2, 4, '王五', '计算机学院', '12345678910', 4, '顺丰', '20200224163800');
-INSERT INTO `order` VALUES (16, 7, 11, '张庭', '数学学院', '19936851192', 2, NULL, NULL);
-INSERT INTO `order` VALUES (17, 6, 5, '李四', '湖南文理学院', '19936851192', 2, NULL, NULL);
-INSERT INTO `order` VALUES (18, 6, 14, '李四', '湖南文理学院', '19936851192', 2, NULL, NULL);
-INSERT INTO `order` VALUES (19, 6, 6, '李四', '湖南文理学院', '19936851192', 2, NULL, NULL);
-INSERT INTO `order` VALUES (20, 6, 9, 'sen', '湖南文理学院', '1341342314', 1, NULL, NULL);
+INSERT INTO `order` VALUES (25, 5, 24, '孙六', '西园20舍102B', '18932932813', 1, NULL, NULL);
+INSERT INTO `order` VALUES (26, 5, 22, '孙六', '西园10舍123A', '183323242424', 1, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '用户ID:自增，主键',
-  `email` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户邮箱',
-  `password` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户密码',
-  `name` varchar(16) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户姓名',
-  `sex` varchar(5) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '用户性别',
-  `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT '/lib/img/head.jpg' COMMENT '用户头像',
-  `is_admin` tinyint(4) NOT NULL DEFAULT 0 COMMENT '是否为管理员（1：是，0：不是）',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '用户ID:自增，主键',
+  `email` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '用户邮箱',
+  `password` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL COMMENT '用户密码',
+  `name` varchar(16) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户姓名',
+  `sex` varchar(5) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT NULL COMMENT '用户性别',
+  `img` varchar(255) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NULL DEFAULT '/lib/img/head.jpg' COMMENT '用户头像',
+  `is_admin` tinyint NOT NULL DEFAULT 0 COMMENT '是否为管理员（1：是，0：不是）',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `i_email`(`email` ASC) USING BTREE COMMENT '邮箱的唯一索引'
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES (1, 'admin@qq.com', 'admin', '张三', '男', '/upload/2021-06-24/20/1584188961065.png', 1);
+INSERT INTO `user` VALUES (1, 'admin@qq.com', 'admin', '张三', '男', '/upload/img/head.jpg', 1);
 INSERT INTO `user` VALUES (2, 'abc@qq.com', 'abc', '李四', '女', '/upload/img/head.jpg', 0);
-INSERT INTO `user` VALUES (3, 'root@qq.com', 'root', '王五', '男', '/upload/img/head.jpg', 1);
-INSERT INTO `user` VALUES (5, '123@qq.com', '123', '哈哈', '女', '/upload/img/head.jpg', 0);
-INSERT INTO `user` VALUES (6, 'sen@qq.com', 'sen', 'sen', '男', '/upload/2021-07-01/21/1625146396530.png', 0);
-INSERT INTO `user` VALUES (7, 'zt@qq.com', '123zt', '张庭', '女', '/upload/img/head.jpg', 0);
+INSERT INTO `user` VALUES (3, 'root@qq.com', 'root', '王五', '男', '/upload/2023-12-19/12/1702958542779.png', 0);
+INSERT INTO `user` VALUES (5, '123@qq.com', '123', '孙六', '女', '/upload/2023-12-19/12/1702958583261.jpg', 0);
+INSERT INTO `user` VALUES (6, 'zyf@qq.com', 'zyf', 'zyf', '男', '/upload/img/head.jpg', 1);
+INSERT INTO `user` VALUES (7, 'zs@qq.com', 'zs', 'zs', '男', '/upload/img/head.jpg', 1);
+INSERT INTO `user` VALUES (8, 'zhl@qq.com', 'zhl', 'zhl', '男', '/upload/img/head.jpg', 1);
+INSERT INTO `user` VALUES (9, 'pen@qq.com', 'pen', '钱七', '男', '/upload/2023-12-19/12/1702958653987.jpg', 0);
+INSERT INTO `user` VALUES (10, 'text@qq.com', 'text', '唐八', '女', '/upload/2023-12-19/12/1702958693424.jpg', 0);
+INSERT INTO `user` VALUES (14, 'female', 'female', 'female', '女', '/lib/img/head.jpg', 0);
+INSERT INTO `user` VALUES (15, 'man123', 'man', 'man', '男', '/lib/img/head.jpg', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
