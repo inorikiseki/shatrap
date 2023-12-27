@@ -1,0 +1,25 @@
+## Project Architecture
+
+- **src**
+  - main
+    - java
+      - com.example.shop
+        - **configuration** (some setup like file uploading)
+        - **controller** (contains Spring MVC controllers)
+        - **dao** (contains MyBatis data access objects)
+        - **model**/**entity** (contains data model classes)
+        - **util** (some helper functions)
+        - **ShopApplication** (Application entry point.)
+    - **resources**
+      - **mapper** (database access powered by mybatis)
+      - **static** (contains static files like CSS, JavaScript)
+        - **lib**
+            - font
+            - JavaScript
+            - **layui** (an extremly lightweight font end library)
+        - **upload** (data mostly images uploaded by clients)
+      - templates (contains HTML templates, the front end pages written with *layui* )
+      - *application.properties*/ application.yml (contains Spring Boot configuration)
+  - test (test modules)
+- maven script and config
+- **.sql** MySQL setup 
